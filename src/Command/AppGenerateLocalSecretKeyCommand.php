@@ -33,10 +33,11 @@ class AppGenerateLocalSecretKeyCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $envFile = ".env.dev.local";
+        $envFile = '.env.dev.local';
 
         if (file_exists($envFile)) {
             $io->error("The {$envFile} already exists.");
+
             return Command::FAILURE;
         }
 
@@ -44,9 +45,9 @@ class AppGenerateLocalSecretKeyCommand extends Command
 
         file_put_contents($envFile, "APP_SECRET={$secretKey}");
 
-        $io->success("The .env.dev.local file created and the APP_SECRET key initilialised.");
+        $io->success('The .env.dev.local file created and the APP_SECRET key initilialised.');
 
-         return Command::SUCCESS;
+        return Command::SUCCESS;
 
         // $arg1 = $input->getArgument('arg1');
 
@@ -59,7 +60,5 @@ class AppGenerateLocalSecretKeyCommand extends Command
         // }
 
         // $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-
-       
     }
 }
