@@ -25,7 +25,11 @@
 - Si vous souhaitez changer de fuseau horaire, 
     - Rajouter au .env.dev.local ```APP_TIME_ZONE="..."```
 - Rajouter les autres variables d'environnement en s'inspirant du .env
+<<<<<<< HEAD
 - Configurer le ```MAILER_DSN=...``` pour l'envoi d'email
+=======
+- Configurer le ````MAILER_DSN=...``` pour l'envoi d'email
+>>>>>>> 06a965b095574d2c1e5842a67b18dbff50fcc420
 
 ### 5. Préparer la base de données
 - ```DATABASE_URL=...```

@@ -28,7 +28,7 @@ security:
 
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800
+                lifetime: 604800 # 1 semaine
                 path: /
                 # by default, the feature is enabled by checking a checkbox in the
                 # login form, uncomment the following line to always enable it.
@@ -37,7 +37,7 @@ security:
                 # configure the maximum login attempts
             login_throttling:
                 max_attempts: 3          # per minute ...
-                interval: '1 minutes' # ... or in a custom period
+                interval: '5 minutes' # ... or in a custom period
 
             user_checker: App\Security\UserChecker
 
