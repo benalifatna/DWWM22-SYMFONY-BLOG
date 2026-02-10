@@ -3,9 +3,12 @@
 namespace App\Controller\Admin\Post;
 
 use App\Entity\Post;
+use App\Form\Admin\PostFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin')]
 final class PostController extends AbstractController
@@ -17,14 +20,28 @@ final class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/create', name: 'app_admin_post_create', methods: ['GET'])]
-    public function create(): Response
+    #[Route('/post/create', name: 'app_admin_post_create', methods: ['GET', 'POST'])]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $post = new Post();
 
-        // $this->createForm();
+        $form = $this->createForm(PostFormType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post->setCreatedAt(new \DateTimeImmutable());
+            $post->setUpdatedAt(new \DateTimeImmutable());
+
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash('success', "L'article a été ajouté avec succès.");
+
+            return $this->redirectToRoute('app_admin_post_indes');
+        }
 
         return $this->render('pages/admin/post/create.html.twig', [
+            'postForm' => $form->createView(),
         ]);
     }
 }
