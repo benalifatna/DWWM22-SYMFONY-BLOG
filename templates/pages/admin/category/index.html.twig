@@ -57,7 +57,12 @@
                             <form action="{{path('app_admin_category_delete', {'id':category.id})}}" method="post">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('category-'~category.id)}}">
                                 {# affiche une popop de confirmation de suppresssion #}
-                                <button onclick="return confirm('Confirmer la suppression?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
+                                {% if category.posts is empty %}
+                                      
+                                    <button onclick="return confirm('Confirmer la suppression de cette catégorie ?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
+                                {% else %}
+                                    <button onclick="return confirm('Attention !!! En supprimant cette catégorie, vous supprimerez aussi tous les articles associés?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
+                                {% endif %}
                             </form>
                         </td>
                     </tr>
