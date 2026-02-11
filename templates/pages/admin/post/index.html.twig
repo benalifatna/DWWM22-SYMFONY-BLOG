@@ -57,12 +57,27 @@
                         </td>
                         <td>{{post.title}}</td>
                         <td>{{post.category.name}}</td>
-                         <td>{% if post.isPublished %}
-                                <span>Publié</span>
+                        <td class="align-middle">
+                         <div class="d-flex flex-column justify-content-center align-items-center">{% if post.isPublished %}
+                                <span>Publié le {{post.publishedAt|format_date()}}</span>
                             {% else %}
-                                <span>Pas encore</span>
+                                <span>Non publié</span>
                             {% endif %}
-                        </td>
+
+                            <form action="{{path('app_admin_post_publish', {'id':post.id})}}" method="post">
+                             <input type="hidden" name="csrf_token" value="{{csrf_token('publish-post-'~post.id)}}">
+                                <div class="form-check form-switch">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" role="switch" 
+                                        onclick="confirm('Confirmer cette action ?)"
+                                        onchange="this.form.submit();"
+                                        {{post.isPublished ? 'checked' : ''}}
+                                    >
+                                </div>
+                            </form>
+                            </td>
+                        </div>
                         <td>{{post.createdAt|format_date()}}</td>
                         <td class="test-center align-middle">
                             <div class="d-flex justify-content-center align-items-center gap-1">
