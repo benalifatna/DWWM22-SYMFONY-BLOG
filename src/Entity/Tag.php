@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
-// use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+// DON'T forget the following use statement!!!
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity('name', message: 'Ce tag existe déjà.')]
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
@@ -14,10 +18,15 @@ class Tag
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Le nom est obligatoire.')]
+    #[Assert\Length(
+        max: 100,
+        maxMessage: 'Le nom ne doit pas dépasser {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
-    // #[Gedmo\Slug(fields: ['name'])]
+    #[Gedmo\Slug(fields: ['name'])]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 

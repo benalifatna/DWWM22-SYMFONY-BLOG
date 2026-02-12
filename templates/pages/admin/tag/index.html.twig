@@ -21,7 +21,7 @@
                 }
             });
         } );
-    </script>
+    </script>%
 {% endblock %}
 
 {% block main %}
@@ -30,7 +30,7 @@
     {% include "components/alert.html.twig" %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('app_admin_category_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i>Nouveau tag</a>
+        <a href="{{path('app_admin_tag_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i>Nouveau tag</a>
     </div>
 
     <div class="table-responsive">
@@ -45,23 +45,23 @@
                 </tr>
             </thead>
             <tbody>
-                {# {% for category in categories %}
+                 {% for tag in tags %}
                     <tr>
-                        <td>{{category.name}}</td>
-                        <td>{{category.slug}}</td>
-                        <td>{{category.createdAt|format_date()}}</td>
-                        <td>{{category.updatedAt|format_date()}}</td>
+                        <td>{{tag.name}}</td>
+                        <td>{{tag.slug}}</td>
+                        <td>{{tag.createdAt|format_date()}}</td>
+                        <td>{{tag.updatedAt|format_date()}}</td>
                         <td class="d-flex justify-content-center align-items-center gap-1">
-                            <a href="{{path('app_admin_category_edit', {'id':category.id})}}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i>Modifier</a>
+                            <a href="{{path('app_admin_tag_edit', {'id':tag.id})}}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i>Modifier</a>
                             
-                            <form action="{{path('app_admin_category_delete', {'id':category.id})}}" method="post">
+                            {# <form action="{{path('app_admin_category_delete', {'id':category.id})}}" method="post">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('category-'~category.id)}}">
                                 {# affiche une popop de confirmation de suppresssion #}
-                                {# <button onclick="return confirm('Confirmer la suppression?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
+                                 <button onclick="return confirm('Confirmer la suppression?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
                             </form>
                         </td>
                     </tr>
-                {% endfor %} #} 
+                {% endfor %} 
             </tbody>
         </table>
     </div>
