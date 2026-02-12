@@ -54,8 +54,8 @@
                         <td class="d-flex justify-content-center align-items-center gap-1">
                             <a href="{{path('app_admin_tag_edit', {'id':tag.id})}}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i>Modifier</a>
                             
-                            {# <form action="{{path('app_admin_category_delete', {'id':category.id})}}" method="post">
-                                <input type="hidden" name="csrf_token" value="{{csrf_token('category-'~category.id)}}">
+                              <form action="{{path('app_admin_tag_delete', {'id':tag.id})}}" method="post">
+                                <input type="hidden" name="csrf_token" value="{{csrf_token('tag-'~tag.id)}}">
                                 {# affiche une popop de confirmation de suppresssion #}
                                  <button onclick="return confirm('Confirmer la suppression?')" type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-delete-left"></i>Supprimer</button>
                             </form>
