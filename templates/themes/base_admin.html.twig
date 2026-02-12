@@ -9,9 +9,13 @@
 		<title>
 			{% block title %}{% endblock %}
 			· Blog santé du Dr Jean Dupont</title>
-		<meta name="keywords" content="{% block keywords %}{% endblock %}">
-		<link
-		rel="canonical" href="https://medecine-du-monde.com">
+
+		{# keywords #}
+		{% block keywords %}{% endblock %}
+				
+
+		{# <meta name="keywords" content="{% block keywords %}{% endblock %}"> #}
+		<link rel="canonical" href="https://medecine-du-monde.com">
 
 		{# Webpack Encore #}
 		{% block stylesheets %}
@@ -37,6 +41,9 @@
 			
 		{% endblock %}
 		
+		{# select2 #}
+		{% block select2 %}{% endblock %}
+
 		{# Favicon #}
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
